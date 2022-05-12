@@ -1,14 +1,10 @@
 namespace CorEscuela.Entidades
 {
-    public class Alumno
+    public class Alumno:ObjetoEscuelaBase
     {
-        public string UniqueId {get; private set;} 
-        public string Nombre {get; set;}
         public List<Evaluacion> Evaluaciones {get; set;}
-
         public Alumno()
         {
-            UniqueId = Guid.NewGuid().ToString();
             Evaluaciones = new List<Evaluacion>();
         }
     }
