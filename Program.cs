@@ -14,7 +14,6 @@ namespace CorEscuela
             var engine = new EscuelaEngine();
             engine.Inicializar();
             Printer.EscribirTitulo("BIENVENIDOS AL ITSSY");
-            Printer.Beep();
             ImprimirCursosEscuela(engine.Escuela);
             var listaObjetos = engine.GetObjetosEscuela();
         }
