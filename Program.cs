@@ -16,6 +16,12 @@ namespace CorEscuela
             Printer.EscribirTitulo("BIENVENIDOS AL ITSSY");
             ImprimirCursosEscuela(engine.Escuela);
             var listaObjetos = engine.GetObjetosEscuela();
+
+            var listaILugar = from obj in listaObjetos
+                              where obj is Alumno
+                              select (Alumno) obj;
+
+            //engine.Escuela.LimpiarLugar();
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
