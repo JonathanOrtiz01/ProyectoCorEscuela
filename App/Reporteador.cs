@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using CorEscuela.Entidades;
 
 namespace CorEscuela.App
@@ -13,9 +14,17 @@ namespace CorEscuela.App
             _diccionario = dicObsEsc;
         }
 
-        public IEnumerable<Evaluacion> GetListaEvaluaciones()
+        public IEnumerable<Escuela> GetListaEvaluaciones()
         {
-            _diccionario[LlaveDiccionario.Evaluacion]
+            IEnumerable<Escuela> rta;
+            if(_diccionario.TryGetValue(LlaveDiccionario.Escuela, out IEnumerable<ObjetoEscuelaBase> lista))
+            {
+                rta = lista.Cast<Escuela>();
+            }
+            {
+                rta = null;
+            }
+            return rta;
         }
     }
 }
