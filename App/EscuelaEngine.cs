@@ -29,8 +29,27 @@ namespace CorEscuela
 
             diccionario.Add(LlaveDiccionario.Escuela, new[] {Escuela});
             diccionario.Add(LlaveDiccionario.Curso, Escuela.Cursos.Cast<ObjetoEscuelaBase>());
+
+            var listatmpEvaluaciones = new List<Evaluacion>();
+            var listatmpAsignaturas = new List<Asignatura>();
+            var listatmpAlumnos = new List<Alumno>();
+            foreach (var cur in Escuela.Cursos)
+            {
+                listatmpAsignaturas.AddRange(cur.Asignaturas);
+                listatmpAlumnos.AddRange(cur.Alumnos);
+                foreach (var alum in cur.Alumnos)
+                {
+                    listatmpEvaluaciones.AddRange(alum.Evaluaciones);
+                }               
+                
+            }
+
+            diccionario.Add(LlaveDiccionario.Asignatura, listatmpAsignaturas.Cast<ObjetoEscuelaBase>());
+            diccionario.Add(LlaveDiccionario.Alumno, listatmpAlumnos.Cast<ObjetoEscuelaBase>());
+            diccionario.Add(LlaveDiccionario.Evaluacion, listatmpEvaluaciones.Cast<ObjetoEscuelaBase>());
             return diccionario;
         }
+
         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
             bool traerEvaluaciones = true,
             bool traerAlumnos = true,
