@@ -1,6 +1,7 @@
 using System.Linq;
 
 using CorEscuela.Entidades;
+using CorEscuela.Util;
 
 namespace CorEscuela
 {
@@ -21,6 +22,19 @@ namespace CorEscuela
             CargarCursos();
             CargarAsignaturas();
             CargarEvaluaciones();
+        }
+        public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic)
+        {
+            foreach (var obj in dic)
+            {
+                Printer.EscribirTitulo(obj.Key.ToString());
+                Console.WriteLine(obj);
+
+                foreach (var val in obj.Value)
+                {
+                    Console.WriteLine(val);
+                }
+            }
         }
 
         public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos()

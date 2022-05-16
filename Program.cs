@@ -25,6 +25,7 @@ namespace CorEscuela
                 Console.WriteLine($"Key: {keyValPair.Key}, Valor: {keyValPair.Value}");
             }
 
+            var dictmp = engine.GetDiccionarioObjetos();
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
