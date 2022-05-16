@@ -23,6 +23,7 @@ namespace CorEscuela
             CargarEvaluaciones();
         }
 
+        
         public IReadOnlyList<ObjetoEscuelaBase> GetObjetosEscuela(
             bool traerEvaluaciones = true,
             bool traerAlumnos = true,

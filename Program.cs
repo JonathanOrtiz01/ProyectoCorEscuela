@@ -15,14 +15,22 @@ namespace CorEscuela
             engine.Inicializar();
             Printer.EscribirTitulo("BIENVENIDOS AL ITSSY");
             ImprimirCursosEscuela(engine.Escuela);
+            Dictionary<int, string> diccionario = new Dictionary<int, string>();
 
-            int dummy = 0;
-            var listaObjetos = engine.GetObjetosEscuela(
-            out int conteoEvaluaciones,
-            out int conteoCursos,
-            out int conteoAsignaturas,
-            out int conteoAlumnos
-            );
+            diccionario.Add(10, "JuanK");
+            diccionario.Add(23, "JonaOrtiz");
+
+            foreach (var keyValPair in diccionario)
+            {
+                Console.WriteLine($"Key: {keyValPair.Key}, Valor: {keyValPair.Value}");
+            }
+
+            Printer.EscribirTitulo("Acceso a diccionario");
+            WriteLine(diccionario[23]);
+            Printer.EscribirTitulo("Diccionario nuevo");
+            var dic = new Dictionary<string, string>();
+            dic["Luna"] = "Cuerpo celeste que gira alrededor de la tierra";
+            WriteLine(dic["Luna"]);
 
         }
 
