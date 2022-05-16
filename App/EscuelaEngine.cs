@@ -25,34 +25,45 @@ namespace CorEscuela
         }
         public void ImprimirDiccionario(Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> dic, bool imprimirEval = false)
         {
-            foreach (var obj in dic)
+            foreach (var objdic in dic)
             {
-                Printer.EscribirTitulo(obj.Key.ToString());
-                Console.WriteLine(obj);
+                Printer.EscribirTitulo(objdic.Key.ToString());
+                Console.WriteLine(objdic);
 
-                foreach (var val in obj.Value)
+                foreach (var val in objdic.Value)
                 {
-                    if(imprimirEval && val is Evaluacion)
-                    { 
-                        if(imprimirEval) 
-                        Console.WriteLine(val);
-                    }
-                    else if(val is Escuela)
-                    {   
-                        Console.WriteLine("Escuela: " + val);
-                    }
-                    else if(val is Alumno)
+                    switch (objdic.Key)
                     {
-                        Console.WriteLine("Alumno: " + val.Nombre);
-                    }
-                    else
-                    {
-                        Console.WriteLine(val);
+                        case LlaveDiccionario.Evaluacion:
+                            if(imprimirEval) 
+                                Console.WriteLine(val); 
+                        break;
+
+                        case LlaveDiccionario.Escuela:
+                            Console.WriteLine("Escuela: " + val);
+                        break;
+
+                        case LlaveDiccionario.Alumno:
+                            Console.WriteLine("Alumno: " + val.Nombre);
+                        break;
+
+                        case LlaveDiccionario.Curso:
+                        var curtmp = val as Curso;
+                        if(curtmp != null)
+                        {
+                            int count = curtmp.Alumnos.Count;
+                            Console.WriteLine("Curso: " + val.Nombre + "Cantidad de alumnos: " + count);
+                        }
+                        break;
+
+                        default:
+                            Console.WriteLine(val);
+                        break;
+
                     }
                 }
             }
         }
-
         public Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>> GetDiccionarioObjetos()
         {   
             var diccionario = new Dictionary<LlaveDiccionario, IEnumerable<ObjetoEscuelaBase>>();
@@ -186,7 +197,7 @@ namespace CorEscuela
                             {
                                 Asignatura = asignatura,
                                 Nombre = $"{asignatura.Nombre} Ev#{i + 1}",
-                                Nota = (float)(5 * rnd.NextDouble()),
+                                Nota = MathF.Round((float)(5 * rnd.NextDouble()), 2),
                                 Alumno = alumno
                             };
                             alumno.Evaluaciones.Add(ev);
