@@ -24,6 +24,52 @@ namespace CorEscuela
         }
 
         public List<ObjetoEscuelaBase> GetObjetosEscuela(
+            bool traerEvaluaciones = true,
+            bool traerAlumnos = true,
+            bool traerAsignaturas = true,
+            bool traerCursos = true          
+        )
+        {
+            return GetObjetosEscuela(out int dummy, out dummy, out dummy, out dummy); 
+        }
+
+         public List<ObjetoEscuelaBase> GetObjetosEscuela(
+            out int conteoEvaluaciones,
+            bool traerEvaluaciones = true,
+            bool traerAlumnos = true,
+            bool traerAsignaturas = true,
+            bool traerCursos = true          
+        )
+        {
+            return GetObjetosEscuela(out conteoEvaluaciones, out int dummy, out dummy, out dummy); 
+        }
+
+        public List<ObjetoEscuelaBase> GetObjetosEscuela(
+            out int conteoCursos,
+            out int conteoEvaluaciones,
+            bool traerEvaluaciones = true,
+            bool traerAlumnos = true,
+            bool traerAsignaturas = true,
+            bool traerCursos = true          
+        )
+        {
+            return GetObjetosEscuela(out conteoEvaluaciones, out conteoCursos, out int dummy, out dummy); 
+        }
+
+         public List<ObjetoEscuelaBase> GetObjetosEscuela(
+            out int conteoAsignaturas,
+            out int conteoCursos,
+            out int conteoEvaluaciones,
+            bool traerEvaluaciones = true,
+            bool traerAlumnos = true,
+            bool traerAsignaturas = true,
+            bool traerCursos = true          
+        )
+        {
+            return GetObjetosEscuela(out conteoEvaluaciones, out conteoCursos, out conteoAsignaturas, out int dummy); 
+        }
+        
+        public List<ObjetoEscuelaBase> GetObjetosEscuela(
             out int conteoEvaluaciones,
             out int conteoCursos,
             out int conteoAsignaturas,
