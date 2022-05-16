@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System;
 using System.Collections.Generic;
+using CorEscuela.App;
 using CorEscuela.Entidades;
 using CorEscuela.Util;
 using static System.Console;
@@ -10,24 +11,21 @@ namespace CorEscuela
     class Program
     {
         static void Main (string[] args)
-        {      
+        {   
+            AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
+            AppDomain.CurrentDomain.ProcessExit += (o, s) => Printer.Beep(100, 100, 1);
+
             var engine = new EscuelaEngine();
             engine.Inicializar();
             Printer.EscribirTitulo("BIENVENIDOS AL ITSSY");
-            ImprimirCursosEscuela(engine.Escuela);
-            Dictionary<int, string> diccionario = new Dictionary<int, string>();
+            
+            var reporteador = new Reporteador(engine.GetDiccionarioObjetos());
+        }
 
-            diccionario.Add(10, "JuanK");
-            diccionario.Add(23, "JonaOrtiz");
-
-            foreach (var keyValPair in diccionario)
-            {
-                Console.WriteLine($"Key: {keyValPair.Key}, Valor: {keyValPair.Value}");
-            }
-
-            var dictmp = engine.GetDiccionarioObjetos();
-
-            engine.ImprimirDiccionario(dictmp, true);
+        private static void AccionDelEvento(object? sender, EventArgs e)
+        {
+            Printer.EscribirTitulo("SALIENDO...");
+            Printer.Beep(3000, 1000, 3);
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
