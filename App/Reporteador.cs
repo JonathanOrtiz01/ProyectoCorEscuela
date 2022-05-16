@@ -63,19 +63,24 @@ namespace CorEscuela.App
 
             foreach (var asigconEval in dicEvalXAsig)
             {
-                var dummy = from eval in asigconEval.Value
-                            group eval by eval.Alumno.UniqueId
-                            into groupEvalAlumno
-                            select new  
+                var promedioAlumnos = from eval in asigconEval.Value
+                            group eval by new 
                             {
-                               AlumnoId = groupEvalAlumno.Key,
-                               Promedio = groupEvalAlumno.Average(evaluacion => evaluacion.Nota)
+                                eval.Alumno.UniqueId,
+                                eval.Alumno.Nombre
+                            }
+                            into groupEvalAlumno
+                            select new AlumnoPromedio
+                            {
+                               alumnoid = groupEvalAlumno.Key.UniqueId,
+                               alumnoNombre = groupEvalAlumno.Key.Nombre,
+                               promedio = groupEvalAlumno.Average(evaluacion => evaluacion.Nota)
                             };
-            }
 
-            return rta;
+                rta.Add(asigconEval.Key, promedioAlumnos);
+            }   
 
+            return rta;      
         }
-    
     }
 }
