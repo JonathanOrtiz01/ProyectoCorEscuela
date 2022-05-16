@@ -25,13 +25,6 @@ namespace CorEscuela
                 Console.WriteLine($"Key: {keyValPair.Key}, Valor: {keyValPair.Value}");
             }
 
-            Printer.EscribirTitulo("Acceso a diccionario");
-            WriteLine(diccionario[23]);
-            Printer.EscribirTitulo("Diccionario nuevo");
-            var dic = new Dictionary<string, string>();
-            dic["Luna"] = "Cuerpo celeste que gira alrededor de la tierra";
-            WriteLine(dic["Luna"]);
-
         }
 
         private static void ImprimirCursosEscuela(Escuela escuela)
