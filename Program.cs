@@ -24,6 +24,8 @@ namespace CorEscuela
             var listaAsig = reporteador.GetListaAsignaturas();
             var listaEvalXAsig = reporteador.GetDicEvalXAsig();
             var listaPromXAsig = reporteador.GetPromedioAlumnoXAsignatura();
+
+            
             
             /*listaPromXAsig = reporteador.GetPromedioAlumnoXAsignatura();
             Printer.EscribirTitulo("CUADRO DE HONOR");
@@ -51,8 +53,7 @@ namespace CorEscuela
                     itm++;
                 }
              
-            } */
-
+            } 
             Printer.EscribirTitulo("Captura de una evaluación por consola");
             var newEval = new Evaluacion();
             string nombre, notastring;
@@ -98,14 +99,21 @@ namespace CorEscuela
                     Printer.EscribirTitulo(arge.Message);
                     WriteLine("Saliendo del programa...");
                 }
+                
                 catch(Exception)
                 {    
                     Printer.EscribirTitulo("El valor de la nota no es válido");
                     WriteLine("Saliendo del programa...");
                 }
+
+                finally
+                {
+                    Printer.EscribirTitulo("FINALLY");
+                }
                 
                 
-            }
+            }*/
+
 
 
         }
