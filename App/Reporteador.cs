@@ -55,7 +55,7 @@ namespace CorEscuela.App
             return dicRta;
         }       
 
-        public Dictionary<string, IEnumerable<object>> GetPromedioAlumnoXAsignatura()
+        public Dictionary<string, IEnumerable<object>> GetPromedioAlumnoXAsignatura(int top = 3)
         {
             var rta = new Dictionary<string, IEnumerable<object>>();
 
@@ -77,7 +77,7 @@ namespace CorEscuela.App
                                promedio = groupEvalAlumno.Average(evaluacion => evaluacion.Nota)
                             };
 
-                rta.Add(asigconEval.Key, promedioAlumnos);
+                rta.Add(asigconEval.Key, promedioAlumnos.OrderByDescending((lp) => lp.promedio).Take(top));
             }   
 
             return rta;      

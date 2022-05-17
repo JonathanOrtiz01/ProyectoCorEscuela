@@ -7,6 +7,13 @@ namespace CorEscuela.Entidades
     {
         public float promedio;
         public string alumnoid; 
-        public string alumnoNombre;  
+        public string alumnoNombre;
+        
+        public override string ToString()
+        {
+            return $"Alumno: \"{alumnoNombre}\", Promedio: {promedio}";
+        }  
     }
+
+    
 }

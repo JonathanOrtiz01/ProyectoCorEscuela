@@ -12,8 +12,8 @@ namespace CorEscuela
     {
         static void Main (string[] args)
         {   
-            AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
-            AppDomain.CurrentDomain.ProcessExit += (o, s) => Printer.Beep(100, 100, 1);
+            //AppDomain.CurrentDomain.ProcessExit += AccionDelEvento;
+            //AppDomain.CurrentDomain.ProcessExit += (o, s) => Printer.Beep(100, 100, 1);
 
             var engine = new EscuelaEngine();
             engine.Inicializar();
@@ -24,6 +24,34 @@ namespace CorEscuela
             var listaAsig = reporteador.GetListaAsignaturas();
             var listaEvalXAsig = reporteador.GetDicEvalXAsig();
             var listaPromXAsig = reporteador.GetPromedioAlumnoXAsignatura();
+            
+            listaPromXAsig = reporteador.GetPromedioAlumnoXAsignatura();
+            Printer.EscribirTitulo("CUADRO DE HONOR");
+            foreach (var asig in listaPromXAsig)
+            {
+                Printer.EscribirTitulo($"   {asig.Key}");
+                var itm = 1;
+                foreach (var Prom in asig.Value)
+                {
+                    switch (itm)
+                    {
+                        case 1:
+                            WriteLine($"Primer Lugar {Prom} Felicitaciones!");
+                            break;
+                        case 2:
+                            WriteLine($"Segundo Lugar {Prom} Felicitaciones!");
+                            break;
+                        case 3:
+                            WriteLine($"Tercer Lugar {Prom} Felicitaciones!");
+                            break;
+                        default:
+                            WriteLine(Prom);
+                            break;
+                    }
+                    itm++;
+                }
+             
+            }
 
         }
 
