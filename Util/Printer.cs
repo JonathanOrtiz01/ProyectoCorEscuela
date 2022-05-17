@@ -7,6 +7,11 @@ namespace CorEscuela.Util
             Console.WriteLine("".PadLeft(size, '='));
         }
 
+        public static void PresionarEnter()
+        {
+            Console.WriteLine("Presione ENTER para continuar");
+        }
+
         public static void EscribirTitulo(string titulo)
         {
             DibujarLinea();

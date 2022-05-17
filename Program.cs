@@ -25,7 +25,7 @@ namespace CorEscuela
             var listaEvalXAsig = reporteador.GetDicEvalXAsig();
             var listaPromXAsig = reporteador.GetPromedioAlumnoXAsignatura();
             
-            listaPromXAsig = reporteador.GetPromedioAlumnoXAsignatura();
+            /*listaPromXAsig = reporteador.GetPromedioAlumnoXAsignatura();
             Printer.EscribirTitulo("CUADRO DE HONOR");
             foreach (var asig in listaPromXAsig)
             {
@@ -51,7 +51,62 @@ namespace CorEscuela
                     itm++;
                 }
              
+            } */
+
+            Printer.EscribirTitulo("Captura de una evaluación por consola");
+            var newEval = new Evaluacion();
+            string nombre, notastring;
+            float nota;
+
+            WriteLine("Ingrese el nombre de la evaluación");
+            Printer.PresionarEnter();
+            nombre = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(nombre))
+            {
+                Printer.EscribirTitulo("El valor del nombre no puede ser vacío");
+                WriteLine("Saliendo del programa...");
             }
+            else
+            {
+                newEval.Nombre = nombre.ToLower();
+
+                WriteLine("El nombre de la evaluación ha sido ingresado correctamente");
+            }
+
+            WriteLine("Ingrese la nota de la evaluación");
+            Printer.PresionarEnter();
+            notastring = Console.ReadLine();
+            if(string.IsNullOrWhiteSpace(notastring))
+            {
+                Printer.EscribirTitulo("El valor de la nota no puede ser vacío");
+                WriteLine("Saliendo del programa...");
+            }
+            else
+            {
+                try
+                {
+                    newEval.Nota = float.Parse(notastring);
+                    if(newEval.Nota < 0 || newEval.Nota > 5)
+                    {
+                        throw new ArgumentOutOfRangeException("La nota debe estar entre 0 y 5");
+                    }
+                    WriteLine("La nota de la evaluación ha sido ingresada correctamente");
+                }
+
+                catch(ArgumentOutOfRangeException arge)
+                {
+                    Printer.EscribirTitulo(arge.Message);
+                    WriteLine("Saliendo del programa...");
+                }
+                catch(Exception)
+                {    
+                    Printer.EscribirTitulo("El valor de la nota no es válido");
+                    WriteLine("Saliendo del programa...");
+                }
+                
+                
+            }
+
 
         }
 
